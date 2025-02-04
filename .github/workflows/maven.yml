@@ -26,22 +26,8 @@ jobs:
       - name: Build
         run: mvn -B package --file pom.xml
 
-      - name: Analyze
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-          -Dsonar.login=$SONAR_TOKEN \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.organization=insideapp-oss \
-          -Dsonar.projectKey=insideapp-oss_sonar-flutter
-
-      - name: Read version
-        run: echo "version=$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)" >> $GITHUB_ENV
-
       - name: Upload snapshot release
-        if: github.ref == 'refs/heads/develop'
+        if: github.ref == 'refs/heads/master'
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
