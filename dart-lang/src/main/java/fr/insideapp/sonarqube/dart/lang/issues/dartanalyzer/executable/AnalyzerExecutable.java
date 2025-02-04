@@ -52,7 +52,7 @@ public abstract class AnalyzerExecutable {
 
     protected static final Logger LOGGER = Loggers.get(AnalyzerExecutable.class);
 
-    private static final int ANALYZER_TIMEOUT = 10 * 60 * 1000;
+    private static final int ANALYZER_TIMEOUT = 10 * 12000 * 1000;
     private static final String ANALYSIS_OPTIONS_FILENAME = "analysis_options.yaml";
     private static final String ANALYSIS_OPTIONS_FILE = "/dartanalyzer/analysis_options.yaml";
 
